@@ -12,11 +12,11 @@ target_camera cam;
 bool load_content() {
   // Create quad data - two triangles
   // Positions
-  vector<vec3> positions{
-      // *********************************
-      // Add the position data for two triangles here
-
-
+	vector<vec3> positions{
+		// *********************************
+		// Add the position data for two triangles here
+		vec3(-1,1,0),vec3(1,-1,0), vec3(1,1,0),//Triangle 1 vectors
+		vec3(-1,1,0), vec3(-1,-1,0), vec3(1,-1,0)//Triangle 2 vectors
       // *********************************
   };
   // Colours
