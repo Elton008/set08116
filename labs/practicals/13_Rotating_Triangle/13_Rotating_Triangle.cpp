@@ -49,11 +49,14 @@ bool render() {
   // *********************************
   // Create rotation matrix - rotate around Z axis by theta
 
+  mat4 Rz = rotate(mat4(1.0f), theta, vec3(1.0f, -1.0f, 0.0f));
+
+
   // *********************************
   // Create MVP matrix
   auto V = cam.get_view();
   auto P = cam.get_projection();
-  auto MVP = P * V * R;
+  auto MVP = P * V * Rz;
   // Set MVP matrix uniform
   glUniformMatrix4fv(eff.get_uniform_location("MVP"), // Location of uniform
                      1,                               // Number of values - 1 mat4
