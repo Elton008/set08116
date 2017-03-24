@@ -49,7 +49,7 @@ bool render() {
   // *********************************
   // Create rotation matrix - rotate around Z axis by theta
 
-  mat4 Rz = rotate(mat4(1.0f), theta, vec3(1.0f, -1.0f, 0.0f));
+  mat4 Rz = rotate(mat4(1.0f), theta, vec3(1.0f, -1.0f, 0.0f)); //Rz is rotation from the z-axis
 
 
   // *********************************
