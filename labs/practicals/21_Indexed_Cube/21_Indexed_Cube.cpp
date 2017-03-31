@@ -14,11 +14,12 @@ float rho = 0.0f;
 bool load_content() {
   // Create cube data - eight corners
   // Positions
-  vector<vec3> positions{
-      // *********************************
-      // Add the position data for cube corners here (8 total)
+	vector<vec3> positions{
+		// *********************************
+		// Add the position data for cube corners here (8 total)
 
-
+		vec3(-1,1,0), vec3(-1,-1,0), vec3(1,-1,0), vec3(1,1,0),
+		vec3(-1,1,-1), vec3(-1,-1,-1), vec3(1,-1,-1), vec3(1,1,-1)
 
       // *********************************
   };
@@ -32,17 +33,17 @@ bool load_content() {
       // *********************************
       // Add index information here - 3 per triangle, 6 per face, 12 triangles
       // Front
-
+	  0, 2, 3, 0, 1, 2,
       // Back
-
+	  4, 6, 7, 4, 5, 6,
       // Right
-
+	  3, 6, 7, 3, 2, 6,
       // Left
-
+	  4, 1, 0, 4, 5, 1,
       // Top
-
+	  4, 3, 7, 4, 0, 3,
       // Bottom
-
+	  1, 6, 2, 1, 5, 6,
       // *********************************
   };
   // Add to the geometry
@@ -50,6 +51,7 @@ bool load_content() {
   geom.add_buffer(colours, BUFFER_INDEXES::COLOUR_BUFFER);
   // ****************************
   // Add index buffer to geometry
+
   // ****************************
   geom.add_index_buffer(indices);
 
@@ -64,6 +66,7 @@ bool load_content() {
   cam.set_target(vec3(0.0f, 0.0f, 0.0f));
   auto aspect = static_cast<float>(renderer::get_screen_width()) / static_cast<float>(renderer::get_screen_height());
   cam.set_projection(quarter_pi<float>(), aspect, 2.414f, 1000.0f);
+  
   return true;
 }
 
