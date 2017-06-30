@@ -11,3 +11,4 @@ void main() {
   // Calculate screen position of vertex
   gl_Position = MVP * vec4(position, 1.0);
 }
+
