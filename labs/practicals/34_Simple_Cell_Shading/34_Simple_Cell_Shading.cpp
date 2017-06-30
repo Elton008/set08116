@@ -60,7 +60,7 @@ bool load_content() {
   // Colour scale from red to black
   vector<vec4> colour_data{vec4(0.12f, 0.0f, 0.0f, 1.0f), vec4(0.25f, 0.0f, 0.0f, 1.0f), vec4(0.5f, 0.0f, 0.0f, 1.0f),
                            vec4(1.0f, 0.0f, 0.0f, 1.0f)};
-  // Create 1D 4x1 texture from colour_data
+  // Create 1D 4x1 texture from colour_data 
   tex = texture(colour_data, 4, 1, false, false);
 
   // Set camera properties
@@ -94,9 +94,9 @@ bool render() {
 
   // *********************************
   // Bind texture to renderer
-
+  renderer::bind(tex, 0);
   // Set the texture value for the shader here
-
+  glUniform1i(eff.get_uniform_location("tex"), 0);
   // *********************************
 
   // Render the mesh
