@@ -8,13 +8,13 @@ using namespace glm;
 mesh m;
 effect eff;
 target_camera cam;
-// Main texture
+// Main texture 
 texture tex;
 // Dissolve texture
 texture dissolve;
 // Dissolve factor to set on shader
 float dissolve_factor = 1.0f;
-vec2 uv_scroll;
+vec2 uv_scroll; 
 
 bool load_content() {
   // Create mesh object, cheating and using the mesh builder for now
@@ -52,11 +52,11 @@ bool update(float delta_time) {
   cam.update(delta_time);
   uv_scroll += vec2(0, delta_time * 0.05);
   return true;
-}
+} 
 
-bool render() {
+bool render() { 
   // Bind effect
-  renderer::bind(eff);
+  renderer::bind(eff);  
 
   // Create MVP matrix
   auto M = m.get_transform().get_transform_matrix();
@@ -72,12 +72,15 @@ bool render() {
 
   // *********************************
   // Set the dissolve_factor uniform value
-
+  glUniform1f(eff.get_uniform_location("dissolve_factor"), dissolve_factor);
   // Bind the two textures - use different index for each
-
+  renderer::bind(tex, 0);
+  renderer::bind(dissolve, 1);
 
   // Set the uniform values for textures - use correct index
-
+ 
+  glUniform1i(eff.get_uniform_location("tex"), 0);
+  glUniform1i(eff.get_uniform_location("dissolve"),1);
 
   // *********************************
 
