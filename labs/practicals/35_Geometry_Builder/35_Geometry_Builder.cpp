@@ -16,47 +16,62 @@ bool load_content() {
 
   // *********************************
   // box
-
+  meshes["box"] = mesh(geometry_builder::create_box());
   // Tetrahedron
-
+  meshes["tetra"] = mesh(geometry_builder::create_tetrahedron());
   // Pyramid
-
+  meshes["pyramid"] = mesh(geometry_builder::create_pyramid());
   // Disk
-
+  meshes["disk"] = mesh(geometry_builder::create_disk(20));
   // Cylinder
-
+  meshes["cylinder"] = mesh(geometry_builder::create_cylinder(20, 20));
   // Sphere
-
+  meshes["sphere"] = mesh(geometry_builder::create_sphere(20, 20));
   // Torus
-
+  meshes["torus"] = mesh(geometry_builder::create_torus(20, 20, 1.0f, 5.0f));
 
   // Set the transforms for your meshes here
   // 5x scale, move(-10.0f, 2.5f, -30.0f)
-
+  meshes["box"].get_transform().scale = vec3(5.0f, 5.0f, 5.0f);
+  meshes["box"].get_transform().translate(vec3(-10.0f, 2.5f, -30.0f));
+ 
 
   // 4x scale, move(-30.0f, 10.0f, -10.0f)
+  meshes["tetra"].get_transform().scale = vec3(4.0f, 4.0f, 4.0f);
+  meshes["tetra"].get_transform().translate(vec3(-30.0f, 10.0f, -10.0f));
 
 
   // 5x scale, move(-10.0f, 7.5f, -30.0f)
+  meshes["pyramid"].get_transform().scale = vec3(5.0f, 5.0f, 5.0f);
+  meshes["pyramid"].get_transform().translate(vec3(-10.0f, 7.5f, -30.0f));
 
 
   // scale(3.0f, 1.0f, 3.0f), move(-10.0f, 11.5f, -30.0f), 180 rotate X axis
-
+  meshes["disk"].get_transform().scale = vec3(3.0f, 1.0f, 3.0f);
+  meshes["disk"].get_transform().translate(vec3(-10.0f, 11.5f, -30.0f));
+  meshes["disk"].get_transform().rotate(vec3(half_pi<float>(), 0.0f, 0.0f));
 
 
   // 5x scale, move(-25.0f, 2.5f, -25.0f)
+  meshes["cylinder"].get_transform().scale = vec3(5.0f, 5.0f, 5.0f);
+  meshes["cylinder"].get_transform().translate(vec3(-25.0f, 2.5f, -25.0f));
 
 
   // 2.5x scale, move(-25.0f, 10.0f, -25.0f)
+  meshes["sphere"].get_transform().scale = vec3(2.5f, 2.5f, 2.5f);
+  meshes["sphere"].get_transform().translate(vec3(-25.0f, 10.0f, -25.0f));
 
 
   // 180 rotate X axis, move(-25.0f, 10.0f, -25.0f)
+
+  meshes["torus"].get_transform().translate(vec3(-25.0f, 10.0f, -25.0f));
+  meshes["torus"].get_transform().rotate(vec3(half_pi<float>(), 0.0f, 0.0f));
 
 
   // *********************************
 
   // Load texture
-  tex = texture("textures/checker.png");
+  tex = texture("textures/water-06.jpg"); 
 
   // Load in shaders
   eff.add_shader("27_Texturing_Shader/simple_texture.vert", GL_VERTEX_SHADER);
@@ -80,7 +95,7 @@ bool update(float delta_time) {
 
 bool render() {
   // Render meshes
-  for (auto &e : meshes) {
+  for (auto &e : meshes) { 
     auto m = e.second;
     // Bind effect
     renderer::bind(eff);
@@ -94,9 +109,9 @@ bool render() {
 
     // *********************************
     // Bind texture to renderer
-
+	renderer::bind(tex, 0);
     // Set the texture value for the shader here
-
+	glUniform1i(eff.get_uniform_location(" tex"), 0); 
     // *********************************
     // Render mesh
     renderer::render(m);

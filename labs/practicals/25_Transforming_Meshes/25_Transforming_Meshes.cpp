@@ -49,7 +49,7 @@ bool update(float delta_time) {
   if (glfwGetKey(renderer::get_window(), 'W')) {
     m.get_transform().position -= vec3(0.0f, 0.0f, 5.0f) * delta_time;
   }
-  // *********************************
+
   if (glfwGetKey(renderer::get_window(), 'S')) {
 	  m.get_transform().position -= vec3(0.0f, 0.0f, -5.0f) * delta_time;
   }
@@ -64,13 +64,12 @@ bool update(float delta_time) {
   }
 
 
-
-
+  //Sets the directional keys for the meshes rotation
   // *********************************
   if (glfwGetKey(renderer::get_window(), GLFW_KEY_UP)) {
     m.get_transform().rotate(vec3(-pi<float>() * delta_time, 0.0f, 0.0f));
   }
-  // *********************************
+  
 
   if (glfwGetKey(renderer::get_window(), GLFW_KEY_DOWN)) {
 	  m.get_transform().rotate(vec3(-pi<float>() * delta_time, 0.1f, 0.0f));
@@ -87,12 +86,7 @@ bool update(float delta_time) {
 	  m.get_transform().rotate(vec3(-pi<float>() * delta_time, -0.1f, 0.1f));
   }
   
-
-
-
-
-
-
+    
   // *********************************
   // Update the camera
   cam.update(delta_time);
