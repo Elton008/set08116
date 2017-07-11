@@ -100,6 +100,24 @@ bool update(float delta_time) {
 		pos += vec3(5.0f, 0.0f, 0.0f) * delta_time;
 	}
 		
+/*/
+	if (glfwGetKey(renderer::get_window(), 'W')) {
+		m.get_transform().position -= vec3(0.0f, 0.0f, 5.0f) * delta_time;
+	}
+	// *********************************
+	if (glfwGetKey(renderer::get_window(), 'S')) {
+		m.get_transform().position -= vec3(0.0f, 0.0f, -5.0f) * delta_time;
+	}
+
+
+	if (glfwGetKey(renderer::get_window(), 'A')) {
+		m.get_transform().position -= vec3(5.0f, 0.0f, 0.0f) * delta_time;
+	}
+
+	if (glfwGetKey(renderer::get_window(), 'D')) {
+		m.get_transform().position -= vec3(-5.0f, 0.0f, 0.0f) * delta_time;
+	}
+/*/
 
   // *********************************
   // Update the camera
