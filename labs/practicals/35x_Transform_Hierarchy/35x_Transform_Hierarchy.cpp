@@ -11,6 +11,7 @@ effect eff;
 mesh plane_mesh;
 texture plane_tex;
 target_camera cam;
+mesh m;
 
 bool load_content() {
   // Create plane mesh
@@ -18,15 +19,17 @@ bool load_content() {
 
   // *********************************
   // Create Three Identical Box Meshes
-
+  meshes[0] = mesh(geometry_builder::create_box());
+  meshes[1] = mesh(geometry_builder::create_box());
+  meshes[2] = mesh(geometry_builder::create_box());
 
 
   // Move Box One to (0,1,0)
-
+  meshes[0].get_transform().translate(vec3(0.0f, 1.0f, 0.0f));
   // Move Box Two to (0,0,1)
-
+  meshes[0].get_transform().translate(vec3(0.0f, 0.0f, 1.0f));
   // Move Box Three to (0,1,0)
-
+  meshes[0].get_transform().translate(vec3(0.0f, 1.0f, 0.0f));
   // *********************************
 
   // Load texture
@@ -52,10 +55,13 @@ bool load_content() {
 bool update(float delta_time) {
   // *********************************
   // rotate Box one on Y axis by delta_time
+	meshes[0].get_transform().rotate(vec3(half_pi<float>(), 0.0f, 1.0f));
 
   // rotate Box Two on Z axis by delta_time
+	meshes[1].get_transform().rotate(vec3(half_pi<float>(), 1.0f, 0.0f));
 
   // rotate Box Three on Y axis by delta_time
+	meshes[2].get_transform().rotate(vec3(half_pi<float>(), 0.0f, 1.0f));
 
   // *********************************
   // Update the camera
@@ -70,15 +76,15 @@ bool render() {
   // Get PV
   const auto PV = cam.get_projection() * cam.get_view();
   // Set the texture value for the shader here
-  glUniform1i(eff.get_uniform_location("tex"), 0);
+  glUniform1i(eff.get_uniform_location("tex"), 0); 
   // Find the lcoation for the MVP uniform
   const auto loc = eff.get_uniform_location("MVP");
 
   // Render meshes
   for (size_t i = 0; i < meshes.size(); i++) {
     // *********************************
-    // SET M to be the usual mesh  transform matrix
-
+    // SET M to be the usual mesh transform matrix
+	  auto M = m.get_transform().get_transform_matrix();
     // *********************************
 
     // Apply the heirarchy chain
