@@ -4,7 +4,7 @@
 using namespace std;
 using namespace graphics_framework;
 using namespace glm;
-
+ 
 effect eff;
 texture tex;
 mesh m;
@@ -13,9 +13,9 @@ target_camera cam;
 bool load_content() {
   // *********************************
   // Load in model, models/teapot.obj
-
+	mesh m (geometry ("models/teapot.obj")); 
   // Load in texture, textures/checker.png
-
+	tex = texture("textures/checker.png");
   // *********************************
 
   // Load in shaders
@@ -29,7 +29,7 @@ bool load_content() {
   cam.set_target(vec3(0.0f, 0.0f, 0.0f));
 
   cam.set_projection(quarter_pi<float>(), renderer::get_screen_aspect(), 0.1f, 1000.0f);
-  return true;
+  return true; 
 }
 
 bool update(float delta_time) {
@@ -51,9 +51,9 @@ bool render() {
 
   // *********************************
   // Bind texture to renderer
-
+  renderer::bind(tex, 0);
   // Set the texture value for the shader here
-
+  glUniform1i(eff.get_uniform_location(" tex"), 0);
   // *********************************
 
   // Render mesh

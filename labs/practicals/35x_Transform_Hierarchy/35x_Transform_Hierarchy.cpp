@@ -55,13 +55,13 @@ bool load_content() {
 bool update(float delta_time) {
   // *********************************
   // rotate Box one on Y axis by delta_time
-	meshes[0].get_transform().rotate(vec3(half_pi<float>(), 0.0f, 1.0f));
+	meshes[0].get_transform().rotate(vec3(half_pi<float>(), 0.0f, 0.1f));
 
   // rotate Box Two on Z axis by delta_time
 	meshes[1].get_transform().rotate(vec3(half_pi<float>(), 1.0f, 0.0f));
 
   // rotate Box Three on Y axis by delta_time
-	meshes[2].get_transform().rotate(vec3(half_pi<float>(), 0.0f, 1.0f));
+	meshes[2].get_transform().rotate(vec3(half_pi<float>(), 0.0f, 0.1f));
 
   // *********************************
   // Update the camera
