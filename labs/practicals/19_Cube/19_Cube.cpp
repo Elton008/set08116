@@ -19,36 +19,59 @@ bool load_content() {
       // Add the position data for triangles here, (6 verts per side)
 
       // Front
-	  vec3(-1,1,0), vec3(1,-1,0), vec3(1,1,0),//Triangle 1 vectors
-	  vec3(-1,1,0), vec3(-1,-1,0), vec3(1,-1,0),//Triangle 2 vectors
+	  vec3(-1,1,1), vec3(1,-1,1), vec3(1,1,1),//Triangle 1 vectors
+	  vec3(-1,1,1), vec3(-1,-1,1), vec3(1,-1,1),//Triangle 2 vectors
 
       // Back
-	vec3(-1,1,-1), vec3(1,-1,-1), vec3(1,1,-1),//Triangle 3 vectors
-	  vec3(-1,1,-1), vec3(-1,-1,-1), vec3(1,-1,-1),//Triangle 4 vectors
+	 vec3(1,1,-1), vec3(1,-1,-1),vec3(-1,1,-1),//Triangle 3 vectors
+	 vec3(1,-1,-1),   vec3(-1,-1,-1),vec3(-1,1,-1),//Triangle 4 vectors
 
       // Right
-	  vec3(1,1,0), vec3(1,-1,-1), vec3(1,1,-1),//Triangle 5 vectors
-	  vec3(1,1,0), vec3(1,-1,0), vec3(1,-1,-1),//Triangle 6 vectors
+	  vec3(1,1,1), vec3(1,-1,-1), vec3(1,1,-1),//Triangle 5 vectors
+	  vec3(1,1,1), vec3(1,-1,1), vec3(1,-1,-1),//Triangle 6 vectors
 
 
       // Left
-	  vec3(-1,1,-1), vec3(-1,-1,0), vec3(-1,1,0),//Triangle 7 vectors
-	  vec3(-1,1,-1), vec3(-1,-1,-1), vec3(-1,-1,0),//Triangle 8 vectors
+	  vec3(-1,1,-1), vec3(-1,-1,1), vec3(-1,1,1),//Triangle 7 vectors
+	  vec3(-1,1,-1), vec3(-1,-1,-1), vec3(-1,-1,1),//Triangle 8 vectors
 
 
 
       // Top
-	  vec3(-1,1,-1), vec3(1,1,0), vec3(1,1,-1),//Triangle 9 vectors
-	  vec3(-1,1,-1), vec3(-1,1,0), vec3(1,1,0),//Triangle 10 vectors
+	  vec3(-1,1,-1), vec3(1,1,1), vec3(1,1,-1),//Triangle 9 vectors
+	  vec3(-1,1,-1), vec3(-1,1,1), vec3(1,1,1),//Triangle 11 vectors
 
 
 
       // Bottom
-	  vec3(-1,-1,0), vec3(1,-1,-1), vec3(1,-1,0),//Triangle 11 vectors
-	  vec3(-1,-1,0), vec3(-1,-1,-1), vec3(1,-1,-1),//Triangle 12 vectors
+	  vec3(-1,-1,1), vec3(1,-1,-1), vec3(1,-1,1),//Triangle 11 vectors
+	  vec3(-1,-1,1), vec3(-1,-1,-1), vec3(1,-1,-1),//Triangle 12 vectors
+
+
+	 // geometry geom;
+  //geom.set_type(GL_QUADS);
+  //vector<vec3> positions{
+	 // // *********************************
+	 // // Add the position data for triangles here, (6 verts per side)
+	 // vec3(-1,1,-1), vec3(-1,1,1), vec3(-1,-1,1), vec3(-1,-1,-1),
+
+	 // vec3(1,1,1), vec3(1,1,-1), vec3(1,-1,-1), vec3(1,-1,1),
+
+	 // vec3(-1,1,-1), vec3(1,1,-1), vec3(1,1,1), vec3(-1,1,1),
+
+	 // vec3(-1,-1,1), vec3(1,-1,1), vec3(1,-1,-1), vec3(-1,-1,-1),
+
+	 // vec3(-1,-1,-1), vec3(1,-1,-1), vec3(1,1,-1), vec3(-1,1,-1),
+
+	 // vec3(1,-1,1), vec3(-1,-1,1), vec3(-1,1,1), vec3(1,1,1),
+
+
+	 // // Front
 
 
 
+	 // // *********************************
+  //};
       // *********************************
   };
   // Colours
