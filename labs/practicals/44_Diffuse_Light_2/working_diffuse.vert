@@ -21,14 +21,16 @@ layout(location = 0) out vec4 vertex_colour;
 
 void main() {
   // *********************************
-  // Calculate position
+  // Calculate position 
+   gl_Position = MVP * vec4(position, 1.0);
 
   // Calculate diffuse component - use transformed normal
-
+  vec3 transformed_normal = N * normal;
   // *********************************
 
   // Calculate k
   float k = max(dot(transformed_normal, light_dir), 0.0);
+
   // Calculate diffuse
   vec4 diffuse = k * (material_colour * light_colour);
 

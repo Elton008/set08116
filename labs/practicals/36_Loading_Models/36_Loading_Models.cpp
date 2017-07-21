@@ -12,6 +12,7 @@ target_camera cam;
 
 bool load_content() {
   // *********************************
+	geometry("models/teapot.obj"); 
   // Load in model, models/teapot.obj
 	m = mesh(geometry ("models/teapot.obj")); 
   // Load in texture, textures/checker.png
