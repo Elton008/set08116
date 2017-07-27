@@ -101,7 +101,8 @@ bool render() {
 
 
     // Set shininess - Use 50.0f
-	//glUniform2f(eff.get_uniform_location("shininess"), 1, value_ptr(shininess));
+	glUniform1f(eff.get_uniform_location("shininess"), 50.0f);
+
 
     // Set light colour - (1.0, 1.0, 1.0, 1.0)
 	glUniform4fv(eff.get_uniform_location("light_colour"), 1, value_ptr(vec4(1.0f, 1.0f, 1.0f, 1.0f)));
@@ -110,7 +111,8 @@ bool render() {
 	glUniform3fv(eff.get_uniform_location("light_dir"), 1, value_ptr(vec3(1.0, 1.0, -1.0)));
 
     // Set eye position - Get this from active camera
-
+	glUniform3fv(eff.get_uniform_location("eye_pos"), 1, value_ptr(vec3(50.0f, 10.0f, 50.0f)));
+	
 
     // *********************************
     // Render mesh

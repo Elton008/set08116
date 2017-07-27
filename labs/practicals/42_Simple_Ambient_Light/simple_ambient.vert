@@ -4,6 +4,7 @@
 uniform mat4 MVP;
 // The ambient intensity of the scene
 uniform vec4 ambient_intensity;
+
 // The material colour of the object
 uniform vec4 material_colour;
 
