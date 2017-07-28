@@ -17,6 +17,7 @@ void main() {
   // *********************************
   // Sample texture
 	vec4 texture_colour = texture(tex, tex_coord);
+
   // Calculate colour
 	colour = primary * texture_colour + secondary;
   // *********************************
