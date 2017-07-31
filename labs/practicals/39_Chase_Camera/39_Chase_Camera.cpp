@@ -101,7 +101,7 @@ bool update(float delta_time) {
   // x - delta_y
   // y - delta_x
   // z - 0
-  //cam.rotate(vec3(x, y, 0));
+  cam.rotate(vec3(x, y, 0));
   // Use keyboard to rotate target_mesh - QE rotate on y-axis
   if (glfwGetKey(renderer::get_window(), GLFW_KEY_Q)) 
   {
@@ -119,7 +119,7 @@ bool update(float delta_time) {
 
 
   if (glfwGetKey(renderer::get_window(), GLFW_KEY_W)) {
-	  target_mesh.get_transform().translate( vec3(0.1f, 0.0f, 0.0f) * ....);
+	  target_mesh.get_transform().translate( vec3(0.1f, 0.0f, 0.0f));
   }
 
   if (glfwGetKey(renderer::get_window(), GLFW_KEY_S)) {
