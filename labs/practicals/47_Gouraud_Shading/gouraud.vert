@@ -1,6 +1,6 @@
 #version 440
 
-// A directional light structure
+//A directional light structure
 struct directional_light {
   vec4 ambient_intensity;
   vec4 light_colour;
@@ -15,7 +15,7 @@ struct material {
   float shininess;
 };
 
-// The model matrix
+//The model matrix
 uniform mat4 M;
 // The transformation matrix
 uniform mat4 MVP;
@@ -48,16 +48,16 @@ void main() {
 	gl_Position = MVP * vec4(position, 1.0);
 
   // Calculate ambient component
-	vec4 ambient_colour = diffuse_reflection * ambient_intensity;
+	vec4 ambient_colour = mat.diffuse_reflection * light.ambient_intensity;
 
   // Transform the normal
 	vec3 transformed_normal = N * normal;
 
   // Calculate k
-	float K = max(dot(transformed_normal, light_dir), 0.0);
+	float K = max(dot(transformed_normal, light.light_dir), 0.0);
 
   // Calculate diffuse
-	vec4 diffuse = K * (diffuse_reflection * light_colour);
+	vec4 diffuse = K * (mat.diffuse_reflection * light.light_colour);
 
   // Calculate world position of vertex
 	vec3 world_position = vec3(M *  vec4(position, 1.0));
@@ -66,16 +66,16 @@ void main() {
 	vec3 view_dir = normalize(eye_pos - world_position);
 
   // Calculate half vector between view_dir and light_dir
-	vec3 half_vector = normalize(light_dir + view_dir);
+	vec3 half_vector = normalize(light.light_dir + view_dir);
 
   // Calculate k
-	K = pow(max(dot(transformed_normal, half_vector), 0.0), shininess);
+	K = pow(max(dot(transformed_normal, half_vector), 0.0), mat.shininess);
 
   // Calculate specular
-	vec4 specular = K * material_colour * light_colour;
+	vec4 specular = K * mat.specular_reflection * light.light_colour;
 
   // Set primary
-	primary = emissive + ambient_colour + diffuse;
+	primary = mat.emissive + ambient_colour + diffuse;
 
   // Set secondary
 	secondary = specular;

@@ -74,7 +74,7 @@ bool load_content() {
 
   // Yellow disk
   meshes["disk"].get_material().set_emissive(vec4(0.0f, 0.0f, 0.0f, 0.0f));
-  meshes["disk"].get_material().set_diffuse(vec4(0.5f, 0.5f, 0.0f, 1.0f)); //red
+  meshes["disk"].get_material().set_diffuse(vec4(0.5f, 0.5f, 0.0f, 1.0f)); // disk's diffuse is set to yellow
   meshes["disk"].get_material().set_specular(vec4(1.0f, 1.0f, 1.0f, 1.0f));
   meshes["disk"].get_material().set_shininess(25.0f);
 
@@ -99,7 +99,7 @@ bool load_content() {
 
   // White torus
   meshes["torus"].get_material().set_emissive(vec4(0.0f, 0.0f, 0.0f, 0.0f));
-  meshes["torus"].get_material().set_diffuse(vec4(1.0f, 1.0f, 1.0f, 1.0f)); //diffuse set to white
+  meshes["torus"].get_material().set_diffuse(vec4(1.0f, 1.0f, 1.0f, 1.0f)); //torus's diffuse set to white
   meshes["torus"].get_material().set_specular(vec4(1.0f, 1.0f, 1.0f, 1.0f));
   meshes["torus"].get_material().set_shininess(25.0f);
    
@@ -112,14 +112,11 @@ bool load_content() {
   // *********************************
   // Set lighting values
   // ambient intensity (0.3, 0.3, 0.3)
-  glUniform4fv(eff.get_uniform_location("ambient_intensity"), 1, value_ptr(vec4(0.3f, 0.3f, 0.3f, 1.0f)));
-
+  light.set_ambient_intensity(vec4(0.3f, 0.3f, 0.3f, 1.0f));
   // Light colour white
-  glUniform4fv(eff.get_uniform_location("light_colour"), 1, value_ptr(vec4(1.0f, 1.0f, 1.0f, 1.0f)));
-
+  light.set_light_colour(vec4(1.0f, 1.0f, 1.0f, 1.0f));
   // Light direction (1.0, 1.0, -1.0)
-  glUniform3fv(eff.get_uniform_location("light_dir"), 1, value_ptr(vec3(1.0, 1.0, -1.0)));
-    
+  light.set_direction(vec3(1.0, 1.0, -1.0));
   // Load in shaders
   eff.add_shader("47_Gouraud_Shading/gouraud.vert", GL_VERTEX_SHADER);
   eff.add_shader("47_Gouraud_Shading/gouraud.frag", GL_FRAGMENT_SHADER); 
@@ -162,14 +159,14 @@ bool render() {
   // Render meshes
   for (auto &e : meshes) {
     auto m = e.second;
-    // Bind effect
+    // Bind effect 
     renderer::bind(eff);
     // Create MVP matrix
     auto M = m.get_transform().get_transform_matrix();
     auto V = cam.get_view();
     auto P = cam.get_projection();
     auto MVP = P * V * M;
-    // Set MVP matrix uniform
+    // Set MVP matrix uniform 
     glUniformMatrix4fv(eff.get_uniform_location("MVP"), 1, GL_FALSE, value_ptr(MVP));
 
     // *********************************
@@ -181,7 +178,7 @@ bool render() {
 	glUniformMatrix3fv(eff.get_uniform_location("N"), 1, GL_FALSE, value_ptr(normalmat));
 
     // Bind material
-
+	renderer::bind(m.get_material(), "mat");
     // Bind light
 	renderer::bind(light, "light");
     // Bind texture
