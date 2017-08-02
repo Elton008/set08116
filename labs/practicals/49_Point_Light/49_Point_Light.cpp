@@ -107,7 +107,8 @@ bool load_content() {
   // Load texture
   tex = texture("textures/checker.png");
   // *********************************
-  // Set lighting values, Position (-25, 10, -10)
+  // Set lighting values, Position (-25, 10, -10) 
+  light.set_position(vec3(-25, 10, -10));
 
   // Light colour white
   light.set_light_colour(vec4(1.0f, 1.0f, 1.0f, 1.0f));
@@ -120,7 +121,7 @@ bool load_content() {
   eff.add_shader("47_Gouraud_Shading/gouraud.frag", GL_FRAGMENT_SHADER);
 
   // Build effect
-  eff.build();
+  eff.build(); 
   // *********************************
 
   // Set camera properties
@@ -139,41 +140,32 @@ bool update(float delta_time) {
   // WSAD to move point light
 
   if (glfwGetKey(renderer::get_window(), GLFW_KEY_W)) {
-	  light.set_position(vec3(50.0f, 10.0f, 0.0f));
+	  light.move(vec3(50.0f, 10.0f, 0.0f));
   }
 
   if (glfwGetKey(renderer::get_window(), GLFW_KEY_S)) {
-	  light.set_position(vec3(-50.0f, 10.0f, 0.0f));
+	  light.move(vec3(-50.0f, 10.0f, 0.0f));
   }
 
   if (glfwGetKey(renderer::get_window(), GLFW_KEY_A)) {
-	  light.set_position(vec3(0.0f, 10.0f, 50.0f));
+	  light.move(vec3(0.0f, 10.0f, 50.0f));
   }
 
   if (glfwGetKey(renderer::get_window(), GLFW_KEY_D)) {
-	  light.set_position(vec3(0.0f, 10.0f, -50.0f));
+	  light.move(vec3(0.0f, 10.0f, -50.0f));
   }
-
-
-
-
-
-
-
-
-
 
 
   // O and P to change range
 
   if (glfwGetKey(renderer::get_window(), GLFW_KEY_O))
   {
-	  
+	  light.set_range(30.0f);
   }
 
   if (glfwGetKey(renderer::get_window(), GLFW_KEY_P))
   {
-	 
+	  light.set_range(20.0f);
   }
 
 

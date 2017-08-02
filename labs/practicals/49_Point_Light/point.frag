@@ -39,7 +39,7 @@ layout(location = 0) out vec4 colour;
 void main() {
   // *********************************
   // Get distance between point light and vertex
-  float d = light.position(vec3 a, vec3 b);
+  float d = light.position(vec3 x, vec3 y);
 
   // Calculate attenuation factor
   float A = light.constant + (light.linear * light.position) + (light.quadratic * (light.position * light.position));
@@ -63,16 +63,12 @@ void main() {
 
   vec4 tex_colour = texture(tex, tex_coord);
 
-  vec4 primary = mat.emissive + ambient_colour + diffuse;
+  vec4 primary = mat.emissive + diffuse;
 
   colour = primary * tex_colour + specular; 
 
   colour.a = 1.0;
 
-
-
-
-
-
+  
   // *********************************
 }
